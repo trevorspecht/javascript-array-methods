@@ -1,0 +1,31 @@
+{
+  "name": "javascript-array-methods",
+  "version": "1.0.0",
+  "description": "Re-implementing [Javascript array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) for fun and profit",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "overrides": {
+      "files": ["tests/**/*"],
+      "plugins": ["jest"],
+      "env": {
+        "jest/globals": true
+      }
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  },
+  "dependencies": {
+    "eslint": "^9.14.0",
+    "eslint-plugin-jest": "^28.9.0",
+    "typescript": "^5.6.3"
+  }
+}
