@@ -1,50 +1,41 @@
 import { InstanceMethods } from '../instance_methods/instance_methods';
 
-describe('instance method tests', () => {
+describe('at() tests', () => {
   let arr = [1, 2, 3, 4, 5];
+  const methods = new InstanceMethods(arr);
 
-  it('getArray() returns the given array', () => {
-    const methods = new InstanceMethods(arr);
-    const array = methods.getArray();
-    expect(array).toBe(arr);
+  it('returns same as bracket notation when index >= 0', () => {
+    const index = 3;
+    const result = methods.at(index);
+    const bracketResult = arr[index];
+
+    expect(result).toBe(4);
+    expect(result).toBe(bracketResult);
   });
 
-  describe('at() tests', () => {
-    const methods = new InstanceMethods(arr);
+  it('counts back from end of array if index < 0', () => {
+    const index = -3;
+    const result = methods.at(index);
 
-    it('returns same as bracket notation when index >= 0', () => {
-      const index = 3;
-      const result = methods.at(index);
-      const bracketResult = arr[index];
+    expect(result).toBe(3);
+  });
 
-      expect(result).toBe(4);
-      expect(result).toBe(bracketResult);
-    });
+  it('returns undefined if index >= array.length', () => {
+    let index = 5;
+    let result = methods.at(index);
 
-    it('counts back from end of array if index < 0', () => {
-      const index = -3;
-      const result = methods.at(index);
+    expect(result).toBeUndefined();
 
-      expect(result).toBe(3);
-    });
+    index = 7;
+    result = methods.at(index);
 
-    it('returns undefined if index >= array.length', () => {
-      let index = 5;
-      let result = methods.at(index);
+    expect(result).toBeUndefined();
+  });
 
-      expect(result).toBeUndefined();
+  it('returns undefined if index < -array.length', () => {
+    const index = -7;
+    const result = methods.at(index);
 
-      index = 7;
-      result = methods.at(index);
-
-      expect(result).toBeUndefined();
-    });
-
-    it('returns undefined if index < -array.length', () => {
-      const index = -7;
-      const result = methods.at(index);
-
-      expect(result).toBeUndefined();
-    });
+    expect(result).toBeUndefined();
   });
 });
