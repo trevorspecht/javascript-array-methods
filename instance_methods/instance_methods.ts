@@ -12,7 +12,7 @@ export class InstanceMethods<T> extends Array<T> {
    * allowing for positive and negative integers.
    * Negative integers count back from the last item in the array.
    */
-  override at(index: number) {
+  override at(index: number): T | undefined {
     const { array } = this;
 
     if (index >= 0) {
