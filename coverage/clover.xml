@@ -5,9 +5,9 @@
     <file name="instance_methods.ts" path="/Users/tree4/code/javascript-array-methods/instance_methods/instance_methods.ts">
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
       <line num="1" count="2" type="stmt"/>
-      <line num="2" count="2" type="stmt"/>
-      <line num="3" count="2" type="stmt"/>
-      <line num="7" count="1" type="stmt"/>
+      <line num="2" count="3" type="stmt"/>
+      <line num="3" count="3" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
       <line num="16" count="5" type="stmt"/>
       <line num="18" count="5" type="cond" truecount="2" falsecount="0"/>
       <line num="19" count="3" type="stmt"/>
