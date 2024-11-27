@@ -26,14 +26,24 @@ export class InstanceMethods<T> extends Array<T> {
    * The concat() method of Array instances is used to merge two or more arrays.
    * This method does not change the existing arrays, but instead returns a new array.
    */
-
-  override concat(...items: unknown[]): T[] {
+  override concat(...items: any[]): any[]
+  override concat(items: (T | any[])): any[] {
     const { array } = this;
+    let merged: any[] = array;
 
     if (!items) {
-      return array;
+      return merged;
     }
 
-    return [...array, ...items];
+    if (Array.isArray(items)) {
+      merged = [...array, ...items]
+    }
+
+        // if (items[Symbol.isConcatSpreadable]) {
+    //   const toConcat = ...items;
+    //   merged = [...array, ...toConcat];
+    // }
+
+    return merged;
   }
 }
