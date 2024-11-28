@@ -29,21 +29,15 @@ export class InstanceMethods<T> extends Array<T> {
   override concat(...items: any[]): any[]
   override concat(items: (T | any[])): any[] {
     const { array } = this;
-    let merged: any[] = array;
 
     if (!items) {
-      return merged;
+      return array;
     }
 
     if (Array.isArray(items)) {
-      merged = [...array, ...items]
+      return [...array, ...items];
+    } else {
+      return [...array, items];
     }
-
-        // if (items[Symbol.isConcatSpreadable]) {
-    //   const toConcat = ...items;
-    //   merged = [...array, ...toConcat];
-    // }
-
-    return merged;
   }
 }
