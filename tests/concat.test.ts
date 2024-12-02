@@ -17,19 +17,19 @@ describe('concat() method tests', () => {
     expect(result).toMatchObject(arr);
   });
 
-  it('return original array when argument is array-like but not an array', () => {
+  it('directly append argument object when argument is array-like but not an array', () => {
     const arrayLike = {
-      [Symbol.isConcatSpreadable]: false,
       length: 2,
       0: 1,
       1: 2,
     };
 
     const result = arr.concat(arrayLike);
-    expect(result).toMatchObject([...arr, arrayLike]);
+    console.log(result)
+    expect(result).toMatchObject(['a', 'b', 'c', 'd', { 0: 1, 1: 2, length: 2 }]);
   });
 
-  it('return original array when argument is array-like but has Symbol.isConcatSpreadable = true', () => {
+  it('spread elements when argument is array-like and has Symbol.isConcatSpreadable = true', () => {
     const arrayLike = {
       0: 0,
       1: 1,
@@ -38,13 +38,37 @@ describe('concat() method tests', () => {
     };
 
     const result = arr.concat(arrayLike);
-    expect(result).toMatchObject([...arr, 0, 1]);
+    expect(result).toMatchObject(['a', 'b', 'c', 'd', 0, 1]);
   });
 
-  it('merges two string arrays', () => {
+  it('concatenates two string arrays', () => {
     const arr2 = ['x', 'y', 'z'];
 
     const result = arr.concat(arr2);
     expect(result).toMatchObject(['a', 'b', 'c', 'd', 'x', 'y', 'z']);
   });
+
+  it('concatenates three arrays of different types', () => {
+    const arr2 = ['x', 'y', 'z'];
+    const arr3 = [1, 2, 3];
+
+    const result = arr.concat(arr2, arr3);
+    expect(result).toMatchObject(['a', 'b', 'c', 'd', 'x', 'y', 'z', 1, 2, 3]);
+  })
+
+  it('concatenates single item', () => {
+    const item = 7;
+
+    const result = arr.concat(item);
+    expect(result).toMatchObject(['a', 'b', 'c', 'd', 7]);
+  })
+
+  it('nested arrays', () => {
+    //@ts-ignore
+    const arr1: InstanceMethods<any> = [[1]];
+    const arr2 = [2, [3]];
+
+    const result = arr1.concat(arr2);
+    expect(result).toMatchObject([[1], 2, [3]]);
+  })
 });
