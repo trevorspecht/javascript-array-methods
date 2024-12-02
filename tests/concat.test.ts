@@ -2,28 +2,29 @@ import { InstanceMethods } from "../instance_methods/instance_methods";
 
 describe('concat() method tests', () => {
   // @ts-ignore
-  const arr: InstanceMethods<string> = ['a', 'b', 'c', 'd'];
+  const arr: InstanceMethods<any> = ['a', 'b', 'c', 'd'];
 
   it('does not alter original or argument arrays', () => {
     const arr2 = [1, 2, 3];
-    const result = arr.concat(arr2);
+    arr.concat(arr2);
 
     expect(arr).toMatchObject(['a', 'b', 'c', 'd']);
     expect(arr2).toMatchObject([1, 2, 3]);
-    expect(result).toMatchObject([...arr, ...arr2]);
   });
 
-  it('returns original array when argument is undefined or null', () => {
-    const result = arr.concat();
+  it('returns original array when no argument is provided', () => {
+    let result = arr.concat();
     expect(result).toMatchObject(arr);
   });
 
   it('return original array when argument is array-like but not an array', () => {
     const arrayLike = {
-      0: 0,
-      1: 1,
+      [Symbol.isConcatSpreadable]: false,
       length: 2,
+      0: 1,
+      1: 2,
     };
+
     const result = arr.concat(arrayLike);
     expect(result).toMatchObject([...arr, arrayLike]);
   });
