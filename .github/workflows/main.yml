@@ -1,6 +1,11 @@
 name: Run Unit Tests
 on:
+  push:
+    paths_ignore:
+      - 'coverage/**'
   pull_request:
+    paths_ignore:
+      - 'coverage/**'
     branches:
       - main
 
