@@ -1,4 +1,4 @@
-import { InstanceMethods } from "../instance_methods/instance_methods";
+import { InstanceMethods } from '../instance_methods/instance_methods';
 
 describe('concat() method tests', () => {
   // @ts-ignore
@@ -21,12 +21,17 @@ describe('concat() method tests', () => {
     const arrayLike = {
       length: 2,
       0: 1,
-      1: 2,
+      1: 2
     };
 
     const result = arr.concat(arrayLike);
-    console.log(result)
-    expect(result).toMatchObject(['a', 'b', 'c', 'd', { 0: 1, 1: 2, length: 2 }]);
+    expect(result).toMatchObject([
+      'a',
+      'b',
+      'c',
+      'd',
+      { 0: 1, 1: 2, length: 2 }
+    ]);
   });
 
   it('spread elements when argument is array-like and has Symbol.isConcatSpreadable = true', () => {
@@ -54,14 +59,14 @@ describe('concat() method tests', () => {
 
     const result = arr.concat(arr2, arr3);
     expect(result).toMatchObject(['a', 'b', 'c', 'd', 'x', 'y', 'z', 1, 2, 3]);
-  })
+  });
 
   it('concatenates single item', () => {
     const item = 7;
 
     const result = arr.concat(item);
     expect(result).toMatchObject(['a', 'b', 'c', 'd', 7]);
-  })
+  });
 
   it('nested arrays', () => {
     //@ts-ignore
@@ -70,5 +75,5 @@ describe('concat() method tests', () => {
 
     const result = arr1.concat(arr2);
     expect(result).toMatchObject([[1], 2, [3]]);
-  })
+  });
 });
